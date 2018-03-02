@@ -18,14 +18,15 @@ def prepare_training_data(data_folder_path):
 	for dir_name in dirs: 
 		#our subject directories start with letter 's' so
 		#ignore any non-relevant directories if any
-		if not dir_name.startswith("s"):
+		#if not dir_name.startswith("s"):
 			#print "yaha"
-			continue; 
+		#	continue; 
 		#------STEP-2--------
 		#extract label number of subject from dir_name
 		#format of dir name = slabel
 		#, so removing letter 's' from dir_name will give us label
-		label = int(dir_name.replace("s", ""))
+		x = len(dir_name)
+		label = int(dir_name[x-1:])
 		 
 		#build path of directory containing images for current subject subject
 		#sample subject_dir_path = "training-data/s1"
