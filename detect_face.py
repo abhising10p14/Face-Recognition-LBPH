@@ -1,3 +1,6 @@
+import os 
+import cv2
+import numpy as np
 #function to detect face using OpenCV
 def detect_face(img):
 	#convert the test image to gray scale as opencv face detector expects gray images
@@ -5,7 +8,7 @@ def detect_face(img):
 
 	#load OpenCV face detector, I am using LBP which is fast
 	#there is also a more accurate but slow: Haar classifier
-	face_cascade = cv2.CascadeClassifier('opencv-files/lbpcascade_frontalface.xml')
+	face_cascade = cv2.CascadeClassifier('models/lbpcascade_frontalface.xml')
 
 	#let's detect multiscale images(some images may be closer to camera than others)
 	#result is a list of faces

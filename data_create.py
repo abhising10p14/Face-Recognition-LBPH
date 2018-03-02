@@ -1,3 +1,6 @@
+import os
+import cv2
+import detect_face as dt
 #this function will read all persons' training images, detect face from each image
 #and will return two lists of exactly same size, one list 
 #of faces and another list of labels for each face
@@ -16,6 +19,7 @@ def prepare_training_data(data_folder_path):
 		#our subject directories start with letter 's' so
 		#ignore any non-relevant directories if any
 		if not dir_name.startswith("s"):
+			#print "yaha"
 			continue; 
 		#------STEP-2--------
 		#extract label number of subject from dir_name
@@ -47,7 +51,7 @@ def prepare_training_data(data_folder_path):
 			cv2.waitKey(100)
 			 
 			#detect face
-			face, rect = detect_face(image)
+			face, rect = dt.detect_face(image)
 	 
 			#------STEP-4--------
 			#we will ignore faces that are not detected
@@ -57,9 +61,9 @@ def prepare_training_data(data_folder_path):
 				#add label for this face
 				labels.append(label)
 	 
-	cv2.destroyAllWindows()
-	cv2.waitKey(1)
-	cv2.destroyAllWindows()
+			cv2.destroyAllWindows()
+			cv2.waitKey(1)
+			cv2.destroyAllWindows()
 	 
 	return faces, labels
 
@@ -71,7 +75,6 @@ def prepare_training_data(data_folder_path):
 print("Preparing data...")
 faces, labels = prepare_training_data("training-data")
 print("Data prepared")
- 
 #print total faces and labels
 print("Total faces: ", len(faces))
 print("Total labels: ", len(labels))
