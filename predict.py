@@ -1,6 +1,4 @@
 import detect_face as detect
-import data_create as dc
-import train as tr
 import mapping as mp
 import cv2
 import numpy as np
@@ -27,7 +25,7 @@ face_recognizer =cv2.face.LBPHFaceRecognizer_create()
 #face_recognizer = cv2.face.createFisherFaceRecognizer()
 
 #train our face recognizer of our training faces
-face_recognizer.train(dc.faces, np.array(dc.labels))
+face_recognizer.read('Trained_models/trainingdataLBPH.xml')
 
 #this function recognizes the person in image passed
 #and draws a rectangle around detected face with name of the 
@@ -62,19 +60,19 @@ print("Predicting images...")
 #load test images
 test_img1 = cv2.imread("test-data/test1.jpg")
 test_img2 = cv2.imread("test-data/test3.jpeg")
-test_img3 = cv2.imread("test-data/test31.jpg")
+#test_img3 = cv2.imread("test-data/test31.jpg")
  
 #perform a prediction
 predicted_img1 = predict(test_img1)
 predicted_img2 = predict(test_img2)
-predicted_img3 = predict(test_img3)
+#predicted_img3 = predict(test_img3)
 
 print("Prediction complete")
  
 #display both images
 cv2.imshow("figure",predicted_img1)
-cv2.imshow("figure",predicted_img2)
-cv2.imshow("figure",  cv2.resize(predicted_img3, (400, 500)))
+#cv2.imshow("figure",predicted_img3)
+cv2.imshow("figure",  cv2.resize(predicted_img2, (400, 500)))
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
